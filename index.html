@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tolerant Smartphone Soreang</title>
+
+    <link rel="stylesheet" href="src/style.css" />
+
+    <link
+      rel="icon"
+      href="Image/profil.jpg"
+    />
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+
+    <link rel="stylesheet" type="text/css" href="./aos/aos.css" />
+
+    <meta name="theme-color" content="#ADD8E6" />
+  </head>
+
+  <body>
+
+    <div id="particles-js"></div>
+
+    <div class="scroll-up-btn">
+      <i><img src="Image/up.svg" alt="arrow-up"></i>
+    </div>
+
+    <!-- Navbar section start -->
+
+   <nav class="navbar">
+  <div data-aos="fade" class="max-width">
+
+    <div class="logo">
+      <a href="index.html">
+     <img src="Image/logo.avif" alt="Logo" class="navbar-logo">
+      </a>
+    </div>
+
+    <ul class="menu">
+      <li><a href="#home" class="menu-btn">Home</a></li>
+      <li><a href="About.html" class="menu-btn">About</a></li>
+    </ul>
+
+    <button class="hamburger">
+      <div class="bar"></div>
+    </button>
+
+  </div>
+</nav>
+
+<nav class="mobile-nav">
+  <a href="#home">Home</a>
+  <a href="About.html">About</a>
+</nav>
+
+    <!-- Navbar section end -->
+
+    <!-- Home section start -->
+
+    <section class="home" id="home">
+      <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" class="max-width">
+        <div class="home-content">
+          <div class="text-1">JASA SERVICE TERPERCAYA & BERGARANSI</div>
+
+          <div class="text-2">TOLERANT SMARTPHONE SERVICE</div>
+          
+          <div data-aos="fade" class="text-3"><span class="typing"></span></div>
+
+          <a data-aos="fade" class="this-is-pain" href="https://api.whatsapp.com/send/?phone=6285864586152&text=Halo%20min,%20saya%20ingin%20service%20nih"
+          >Contact Admin (Fast Respon)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Home section end -->
+  
+    <div class="loader-wrapper">
+      <img
+      />
+
+      <div class="longfazers">
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+      </div>
+    </div>
+    
+    
+     
+      
+      <script>
+  // JavaScript functions for photo slider (otomatis)
+const photoSlider = document.querySelector('#photo-slider .slider');
+let currentPhotoIndex = 0;
+
+function nextPhoto() {
+  currentPhotoIndex = (currentPhotoIndex + 1) % photoSlider.children.length;
+  updatePhotoSliderPosition();
+}
+
+function updatePhotoSliderPosition() {
+  photoSlider.style.transform = `translateX(-${currentPhotoIndex * 100}%)`;
+}
+
+setInterval(nextPhoto, 5000); // Ganti gambar setiap 5 detik (perbaikan interval)
+
+updatePhotoSliderPosition();
+</script>
+
+      <!-- Foto kelas section end -->
+
+    <!-- Footer section start -->
+
+    <footer>
+      <span>Made by
+        <a href="" target="_blank">Alip</a></span>
+    </footer>
+
+    <!-- Footer section end -->
+
+    <script src="./aos/aos.js"></script>
+
+    <script type="text/javascript">
+      AOS.init({
+        duration: 1000
+      });
+    </script>
+
+    <script src="src/script.js"></script>
+    
+    <script>
+      $(window).on("load", function() {
+        $(".loader-wrapper").fadeOut("slow");
+      });
+    </script>
+
+    <script src="https://unpkg.com/feather-icons"></script>
+  </body>
+</html>
