@@ -1,184 +1,368 @@
-const menu_btn = document.querySelector('.hamburger');
-const mobile_menu = document.querySelector('.mobile-nav');
+/* ==========================================
+   MOBILE MENU
+========================================== */
 
-menu_btn.addEventListener('click', function () {
-    menu_btn.classList.toggle('is-active');
-    mobile_menu.classList.toggle('is-active');
-});
+const menuBtn = document.querySelector(".hamburger");
+const mobileMenu = document.querySelector(".mobile-nav");
 
-$(document).ready(function() {
-  $(window).scroll(function() {
-    if(this.scrollY > 20) {
-      $('.navbar').addClass("sticky");
-    } else {
-      $('.navbar').removeClass("sticky");
-    }
-    if(this.scrollY > 500) {
-      $('.scroll-up-btn').addClass("show");
-    } else {
-      $('.scroll-up-btn').removeClass("show");
-    }  
-  })
-
-  $('.scroll-up-btn').click(function() {
-    $('html').animate({scrollTop: 0});
-  })
-
-  $('.menu-btn').click(function() {
-    $('.navbar .menu').toggleClass("active");
-    $('.menu-btn i').toggleClass("active");
-  })
-
-  var typed = new Typed('.typing', {
-  strings: [
-    "SMARTPHONE ANDA BERMASALAH? SERAHKAN SAJA PADA KAMI!",
-    "smartphone anda kena virus? biar kami yang urus!",
-    "ingin check kerusakan hp? serahkan saja pada kami. GRATIS!",
-    "smartphone anda mati total? kami siap perbaiki!",
-    "smartphone anda terkunci selamanya?, serahkan saja kepada kami!",
-    "smartphone anda bootloop?, biar kami yang urus!",
-    "smartphone anda ingin ganti LCD? serahkan saja kepada kami!",
-    "smartphone anda tidak dapat melakukan charger? biar kami yang urus!",
-    
-
-  ],
-  typeSpeed: 50,
-  backSpeed: 100,
-  loop: true,
-})
-
-  // this is really cool
-  // but you should vote Mikuni first
-
-  $('.carousel').owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplayTimeOut: 2000,
-    autoplayHoverPause: true,
-    responsive: {
-      0:{
-        items: 1,
-        nav: false
-      },
-      600:{
-        items: 2,
-        nav: false
-      },
-      1000:{
-        items: 3,
-        nav: false
-      }
-    }
+if (menuBtn && mobileMenu) {
+  menuBtn.addEventListener("click", () => {
+    menuBtn.classList.toggle("is-active");
+    mobileMenu.classList.toggle("is-active");
   });
 
-})
-
-
-// back to top
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-  var backButton = document.getElementById("back-to-top");
-
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      backButton.style.display = "block";
-  } else {
-      backButton.style.display = "none";
-  }
+  document.querySelectorAll(".mobile-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      menuBtn.classList.remove("is-active");
+      mobileMenu.classList.remove("is-active");
+    });
+  });
 }
+
+/* ==========================================
+   JQUERY READY
+========================================== */
+
+$(function () {
+
+  /* ==========================
+     SCROLL EFFECT
+  ========================== */
+
+  $(window).on("scroll", function () {
+
+    const scrollTop = $(this).scrollTop();
+
+    // Sticky Navbar
+    $(".navbar").toggleClass("sticky", scrollTop > 20);
+
+    // Scroll Up Button
+    $(".scroll-up-btn").toggleClass("show", scrollTop > 500);
+
+    // Back To Top
+    const backBtn = document.getElementById("back-to-top");
+
+    if (backBtn) {
+      backBtn.style.display = scrollTop > 300 ? "block" : "none";
+    }
+
+  });
+
+  /* ==========================
+     SCROLL TO TOP
+  ========================== */
+
+  $(".scroll-up-btn").click(function () {
+
+    $("html, body").animate(
+      {
+        scrollTop: 0
+      },
+      500
+    );
+
+    return false;
+  });
+
+  /* ==========================
+     NAVBAR MENU
+  ========================== */
+
+  $(".menu-btn").click(function () {
+    $(".navbar .menu").toggleClass("active");
+    $(".menu-btn i").toggleClass("active");
+  });
+
+  $(".navbar .menu li a").click(function () {
+    $(".navbar .menu").removeClass("active");
+    $(".menu-btn i").removeClass("active");
+  });
+
+  /* ==========================
+     TYPED JS
+  ========================== */
+
+  if (typeof Typed !== "undefined") {
+
+    new Typed(".typing", {
+      strings: [  
+        "Ingin cek kerusakan HP? Serahkan saja kepada kami. GRATIS!",
+        "Smartphone Anda Bermasalah? Bisa kami perbaiki!",
+        "Smartphone anda terkena virus? Biar kami yang urus!",
+        "Smartphone anda mati total? Kami siap memperbaikinya!",
+        "Smartphone anda terkunci? Serahkan kepada kami!",
+        "Smartphone anda bootloop? Biar kami yang urus!",
+        "Ingin ganti LCD smartphone? Kami siap membantu!",
+        "HP tidak bisa charging? Serahkan kepada kami!"
+      ],
+      typeSpeed: 70,
+      backSpeed: 50,
+      backDelay: 50,
+      loop: true,
+      smartBackspace: true
+    });
+
+  }
+
+  /* ==========================
+   TYPED JS SPAREPART
+========================== */
+
+if (typeof Typed !== "undefined") {
+
+  new Typed(".typing-sparepart", {
+    strings: [
+      "LCD local berkualitas (S&K Berlaku) dan dapat dicek ditempat!",
+      "Battery double power berkualitas dan dijamin awet!",
+      "Kaca kamera berbagai tipe Smartphone",
+      "Flexible On/Off + Volume Berbagai Tipe Smartphone",
+      "Tombol luar power + volume murah!",
+      "Charger Original dan Fast Charging",
+      "Buzzer Berkualitas",
+      "Menyediakan berbagai macam alat service juga!",
+      "PCB berbagai macam tipe dan berkualitas!",
+      "Backcover, Backglass juga ada!",
+      "Sparepart Murah dan Bergaransi",
+      "Tersedia Berbagai Merek Smartphone"
+    ],
+    typeSpeed: 70,
+    backSpeed: 50,
+    backDelay: 50,
+    loop: true,
+    smartBackspace: true
+  });
+
+}  
+
+  /* ==========================
+     OWL CAROUSEL
+  ========================== */
+
+  if ($(".carousel").length && $.fn.owlCarousel) {
+
+    $(".carousel").owlCarousel({
+      margin: 20,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 2500,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items: 1,
+          nav: false
+        },
+        600: {
+          items: 2,
+          nav: false
+        },
+        1000: {
+          items: 3,
+          nav: false
+        }
+      }
+    });
+
+  }
+
+});
+
+/* ==========================================
+   BACK TO TOP
+========================================== */
 
 function scrollToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
 }
 
-function fetchData() {
-        fetch('https://api.statcord.com/v3/884467910494535741').then(response => {
-                return response.json();
-        }).then(data => {
-                console.log(data.data[0].servers);
-                document.querySelector('#server-count').innerHTML = `<h4>${data.data[0].servers}`
-                console.log(data.data[0].users);
-                document.querySelector('#user-count').innerHTML = `<h4>${data.data[0].users}`
-        console.log(data.data[0].users);
-                document.querySelector('#cmd-count').innerHTML = `<h4>${data.data[0].commands}`
-                // console.log(data.popular);
-                // if (data.popular[0].name === "help") {
-                //         return document.querySelector('#most-pop-cmd').innerHTML = `<h4>Most Used Command</h4><br /><p>e!${data.popular[1].name}</p>`
-                // } else {
-                //         return document.querySelector('#most-pop-cmd').innerHTML = `<h4>Most Used Command</h4><br /><p>e!${data.popular[0].name}</p>`
-                // }
-        }).catch(error => {
-                console.log(error);
-        });
+/* ==========================================
+   FETCH STATISTICS
+========================================== */
+
+async function fetchData() {
+
+  try {
+
+    const response = await fetch(
+      "https://api.statcord.com/v3/884467910494535741"
+    );
+
+    const data = await response.json();
+
+    if (!data || !data.data || !data.data[0]) return;
+
+    const stats = data.data[0];
+
+    const serverCount = document.querySelector("#server-count");
+    const userCount = document.querySelector("#user-count");
+    const cmdCount = document.querySelector("#cmd-count");
+
+    if (serverCount) {
+      serverCount.innerHTML = `<h4>${stats.servers}</h4>`;
+    }
+
+    if (userCount) {
+      userCount.innerHTML = `<h4>${stats.users}</h4>`;
+    }
+
+    if (cmdCount) {
+      cmdCount.innerHTML = `<h4>${stats.commands}</h4>`;
+    }
+
+  } catch (error) {
+
+    console.error("Stat API Error:", error);
+
+  }
+
 }
 
 fetchData();
 
-// Daftar negara
-var countries = [
-  "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
-  "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
-  "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
-  "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica",
-  "Côte d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
-  "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland",
-  "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau",
-  "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy",
-  "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea", "Kuwait", "Kyrgyzstan", "Laos", "Latvia",
-  "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia",
-  "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco",
-  "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand",
-  "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea",
-  "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis",
-  "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia",
-  "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia",
-  "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan",
-  "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey",
-  "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay",
-  "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-];
+/* ==========================================
+   COUNTRY DROPDOWN
+========================================== */
 
-function populateCountries() {
-    var countryDropdown = document.querySelector("#country");
+document.addEventListener("DOMContentLoaded", () => {
 
-    for (var i = 0; i < countries.length; i++) {
-        var option = document.createElement("option");
-        option.value = countries[i];
-        option.text = countries[i];
-        countryDropdown.add(option);
-    }
-}
+  const countryDropdown = document.querySelector("#country");
 
-window.onload = function () {
-    populateCountries();
-};
+  if (!countryDropdown) return;
+
+  countries.forEach(country => {
+
+    const option = document.createElement("option");
+
+    option.value = country;
+    option.textContent = country;
+
+    countryDropdown.appendChild(option);
+
+  });
+
+});
+
+/* ==========================================
+   WHATSAPP FORM
+========================================== */
 
 function sendwhatsapp() {
-    var phonenumber = "+6285703605976";
 
-    var name = document.querySelector("#name").value;
-    var country = document.querySelector("#country").value;
-    var message = document.querySelector("#message").value;
+  const phoneNumber = "6285703605976";
 
-    // Validasi input
-    if (!name || !country || !message) {
-        alert("Please fill in all.");
-        return;
-    }
+  const name =
+    document.querySelector("#name")?.value.trim();
 
-    // Clearing input fields
-    document.querySelector("#name").value = "";
-    document.querySelector("#message").value = "";
+  const country =
+    document.querySelector("#country")?.value.trim();
 
-    var url = "https://wa.me/" + phonenumber + "?text=" +
-        "*Name :* " + name + "%0a" +
-        "*Country:* " + country + "%0a" +
-        "*Message :* " + message +
-        "%0a%0a" +
-        "instagram @nov444r";
+  const message =
+    document.querySelector("#message")?.value.trim();
 
-    window.open(url, '_blank').focus();
+  if (!name || !country || !message) {
+
+    alert("Mohon lengkapi semua data terlebih dahulu.");
+
+    return;
+  }
+
+  const text =
+`*Nama:* ${name}
+*Negara:* ${country}
+*Pesan:* ${message}
+
+Instagram: @nov444r`;
+
+  const url =
+    `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+
+  window.open(url, "_blank");
+
+  // Reset form
+  document.querySelector("#name").value = "";
+  document.querySelector("#message").value = "";
+  document.querySelector("#country").selectedIndex = 0;
 }
+
+/* ==========================
+   ACTIVE NAVBAR MENU
+========================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const currentPage =
+        window.location.pathname.split("/").pop();
+
+    const navLinks =
+        document.querySelectorAll(".menu a, .mobile-nav a");
+
+    navLinks.forEach(link => {
+
+        const href = link.getAttribute("href");
+
+        // Home
+        if (
+            (currentPage === "" ||
+             currentPage === "index.html") &&
+             href === "index.html"
+        ) {
+            link.classList.add("active");
+        }
+
+        // About
+        if (
+            currentPage === "about.html" &&
+            href === "about.html"
+        ) {
+            link.classList.add("active");
+        }
+
+    });
+
+});
+
+/* ==========================
+   ACTIVE SECTION SCROLL
+========================== */
+
+const sections = document.querySelectorAll("section[id]");
+const navItems = document.querySelectorAll(".menu a");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop =
+            section.offsetTop - 150;
+
+        const sectionHeight =
+            section.clientHeight;
+
+        if (
+            pageYOffset >= sectionTop &&
+            pageYOffset < sectionTop + sectionHeight
+        ) {
+            current = section.getAttribute("id");
+        }
+
+    });
+
+    navItems.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (
+            link.getAttribute("href") === "#" + current
+        ) {
+            link.classList.add("active");
+        }
+
+    });
+
+});
